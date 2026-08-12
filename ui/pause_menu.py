@@ -62,7 +62,7 @@ def draw_pause_menu():
     draw_text(575, 535, "GAME PAUSED")
     
     # Gather General Game Stats Info
-    wave_val = str(getattr(config, "current_wave", 1))
+    wave_val = str(getattr(config, "wave_number", 1))
     gold_val = str(getattr(config, "player_gold", getattr(config, "player_money", 0)))
     zombies_val = str(getattr(config, "zombies_remaining", getattr(config, "enemies_remaining", 0)))
     score_val = str(getattr(config, "score", 0))

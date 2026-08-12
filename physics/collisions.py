@@ -84,7 +84,7 @@ def check_player_projectile_enemy_collisions(dt=0.016):
         prev_y = curr_y - move_dy
         prev_z = curr_z - move_dz
 
-        proj_radius = proj.get("radius", 8.0)
+        proj_radius = proj.get("radius", 10.0)
         hit = False
 
         sub_steps = max(1, int(math.ceil(frame_travel_dist / 4.0)))
@@ -110,23 +110,23 @@ def check_player_projectile_enemy_collisions(dt=0.016):
 
                 enemy_type = enemy[3]
                 if enemy_type == "heavy":
+                    enemy_radius = 20.0
+                    enemy_height = 46.0
+                elif enemy_type == "sage":
                     enemy_radius = 16.0
                     enemy_height = 42.0
-                elif enemy_type == "sage":
-                    enemy_radius = 13.0
-                    enemy_height = 38.0
                 elif enemy_type == "archer":
-                    enemy_radius = 12.0
-                    enemy_height = 36.0
+                    enemy_radius = 15.0
+                    enemy_height = 40.0
                 else:
-                    enemy_radius = 12.0
-                    enemy_height = 35.0
+                    enemy_radius = 15.0
+                    enemy_height = 38.0
 
                 dx = sample_x - ex
                 dy = sample_y - ey
                 horizontal_dist = math.sqrt(dx * dx + dy * dy)
 
-                z_overlap = (ez - 8.0) <= sample_z <= (ez + enemy_height + 12.0)
+                z_overlap = (ez - 10.0) <= sample_z <= (ez + enemy_height + 15.0)
 
                 if horizontal_dist <= (proj_radius + enemy_radius) and z_overlap:
                     hit = True
@@ -224,7 +224,7 @@ def check_enemy_player_melee_collisions():
         dy = config.player_y - enemy[1]
         dist = math.sqrt(dx * dx + dy * dy)
 
-        if dist < 22.0:
+        if dist < 25.0:
             if not config.invincible_active:
                 while len(enemy) <= 6:
                     enemy.append(0)
